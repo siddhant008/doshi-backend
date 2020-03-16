@@ -6,7 +6,7 @@ exports.fitnessGroup_list = function (req, res) {
     try{
         Fitness_group.findAll({ }).then(fitness_group => {
             console.log("All Fitness Group:", JSON.stringify(fitness_group, null, 4));
-            return res.render('Fitness-group/fitness_group', {
+            return res.json({
                 status: 200,
                 data: fitness_group,
                 message: "Fitness Group fetched successfully."
@@ -101,7 +101,7 @@ exports.edit_fitnessGroup = function (req, res) {
     try{
         Fitness_group.findAll({ where: {fitness_group_id: req.params.fitness_group_id }}).then(fitness_group => {
             // console.log("All Fitness Group:", JSON.stringify(fitness_group, null, 4));
-            return res.render('Fitness-group/edit_fitness_group', {
+            return res.json({
                 status: 200,
                 data: fitness_group,
                 message: "Fitness Group fetched successfully."
