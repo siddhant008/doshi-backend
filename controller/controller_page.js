@@ -15,7 +15,7 @@ exports.page_list = function (req, res) {
         }).then(page => {
             // console.log("All blogs:", JSON.stringify(blogs, null, 4));
             // res.json(blogs);
-            return res.render('Page/page_list', {
+            return res.json({
                 status: 200,
                 data: page,
                 message: "page fetched successfully."
@@ -39,7 +39,7 @@ exports.add_page =  function (req, res) {
     try{
         User.findAll({ }).then(user => {
             console.log("All user:", JSON.stringify(user, null, 4));
-            return res.render('Page/add_page', {
+            return res.json( {
                 status: 200,
                 data: user,
                 message: "page fetched successfully."
@@ -137,7 +137,7 @@ exports.edit_page = function (req, res) {
                 console.log("page Fetched:", JSON.stringify(page_result, null, 4));
                 User.findAll({where: {user_id: page_result[0].user_id}}).then(user_result => {
                     console.log("User Fetched:", JSON.stringify(user_result, null, 4));
-                        return res.render('Page/edit_page', {
+                        return res.json({
                             status: 200,
                             data: page_result,
                             data2: users,

@@ -9,7 +9,7 @@ exports.country_list = function (req, res) {
     try{
          Country.findAll({ }).then(country => {
             console.log("All Country:", JSON.stringify(country, null, 4));
-            return res.render('Location/country', {
+            return res.json( {
                 status: 200,
                 data: country,
                 message: "Country fetched successfully."
@@ -97,7 +97,7 @@ exports.edit_country = function(req, res) {
     try{
         Country.findAll({ where: {country_id: req.params.country_id } }).then(country => {
             console.log("country with country id: ",req.params.country_id, " is", JSON.stringify(country, null, 4));
-            return res.render('Location/edit_country', {
+            return res.json({
                 status: 200,
                 data: country,
                 message: "country fetched successfully."
@@ -163,7 +163,7 @@ exports.state_list =  function (req, res) {
             }
         ]}).then(state => {
             console.log("All States:", JSON.stringify(state, null, 4));
-            return res.render('Location/state', {
+            return res.json({
                 status: 200,
                 data: state,
                 message: "State fetched successfully."
@@ -188,7 +188,7 @@ exports.add_state = function (req, res) {
     try{
         Country.findAll({ }).then(country => {
             console.log("All Country:", JSON.stringify(country, null, 4));
-            return res.render('Location/add_state', {
+            return res.json({
                 status: 200,
                 data: country,
                 message: "Country fetched successfully."
@@ -275,7 +275,7 @@ exports.edit_state = function(req, res) {
                 console.log("All country:", JSON.stringify(country, null, 4));
                 Country.findAll({where:{country_id: state[0].country_id} }).then(country_result => {
                     console.log("country-------", JSON.stringify(country_result));
-                    return res.render('Location/edit_state', {
+                    return res.json({
                         status: 200,
                         data: state,
                         data2: country,
@@ -350,7 +350,7 @@ exports.city_list = function (req, res) {
         ]
     }).then(city => {
             console.log("All Cities:", JSON.stringify(city, null, 4));
-            return res.render('Location/city', {
+            return res.json({
                 status: 200,
                 data: city,
                 message: "City fetched successfully."
@@ -376,7 +376,7 @@ exports.add_city = function (req, res) {
     res.locals = {  title: 'Add City' };
     try{
         Country.findAll({  }).then(country => {
-            return res.render('Location/add_city', {
+            return res.json({
                 status: 200,
                 data: country,
                 message: "Country fetched successfully."
@@ -517,7 +517,7 @@ exports.edit_city = function(req, res) {
                     console.log("state-----", JSON.stringify(state_result));
                     Country.findAll({where:{country_id: state_result[0].country_id} }).then(country_result => {
                         console.log("country-------", JSON.stringify(country_result));
-                        return res.render('Location/edit_city', {
+                        return res.json({
                             status: 200,
                             data: city,
                             data3: country,

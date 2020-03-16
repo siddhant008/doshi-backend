@@ -8,7 +8,7 @@ exports.slider_list = function (req, res) {
     try {
         Slider.findAll({}).then(slider => {
             console.log("All slider:", JSON.stringify(slider, null, 4));
-            return res.render('Slider/slider_list', {
+            return res.json({
                 status: 200,
                 data: slider,
                 message: "slider fetched successfully."
@@ -116,7 +116,7 @@ exports.edit_slider = function (req, res) {
     try {
         Slider.findAll({ where: { slider_id: req.params.slider_id } }).then(slider => {
             console.log("All slider:", JSON.stringify(slider, null, 4));
-            return res.render('Slider/edit_slider', {
+            return res.json({
                 status: 200,
                 data: slider,
                 message: "slider fetched successfully."
