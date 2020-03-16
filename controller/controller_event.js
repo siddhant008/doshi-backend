@@ -18,7 +18,7 @@ exports.event_list = function (req, res) {
             ]
         }).then(event => {
             console.log("All event:", JSON.stringify(event, null, 4));
-            return res.render('Event/event_list', {
+            return res.json({
                 status: 200,
                 data: event,
                 message: "event fetched successfully."
@@ -49,7 +49,7 @@ exports.add_event = function (req, res) {
             console.log("All cities:", JSON.stringify(city, null, 4));
             Event_category.findAll({ }).then(event_category => {
                 console.log("All event categories:", JSON.stringify(event_category, null, 4));
-                return res.render('Event/add_event', {
+                return res.json({
                     status: 200,
                     data: event_category,
                     data2: city,
@@ -150,7 +150,7 @@ exports.edit_event = function(req, res) {
                         console.log("Event's City: ", JSON.stringify(city_result, null, 4));
                         Event_category.findAll({where:{event_category_id: event[0].event_category_id} }).then(event_category_result => {
                             console.log("Event's category: ", JSON.stringify(event_category_result, null, 4));
-                            return res.render('Event/edit_event', {
+                            return res.json({
                                 status: 200,
                                 data: event,
                                 data2: city,
@@ -226,7 +226,7 @@ exports.event_category =  function (req, res) {
     try{
         Event_category.findAll({ }).then(event_category => {
         console.log("All event_category:", JSON.stringify(event_category, null, 4));
-            return res.render('Event/event_category', {
+            return res.json({
                 status: 200,
                 data: event_category,
                 message: "event_category fetched successfully."
@@ -321,7 +321,7 @@ exports.edit_event_category = function(req, res) {
     try{
         Event_category.findAll({ where: {event_category_id: req.params.event_category_id } }).then(event_category => {
             console.log("event category with event category id: ",req.params.event_category_id, " is", JSON.stringify(event_category, null, 4));
-            return res.render('Event/edit_event_category', {
+            return res.json({
                 status: 200,
                 data: event_category,
                 message: "event category fetched successfully."

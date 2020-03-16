@@ -5,7 +5,7 @@ exports.challenges_list = function (req, res) {
     try{
         Challenges.findAll({ }).then(challenges => {
             console.log("All Challenges:", JSON.stringify(challenges, null, 4));
-            return res.render('Challenges/challenges', {
+            return res.json({
                 status: 200,
                 data: challenges,
                 message: "Challenges fetched successfully."
@@ -84,7 +84,7 @@ exports.edit_challenges = function (req, res) {
     try{
         Challenges.findAll({ where:{challenge_id: req.params.challenge_id }}).then(challenges => {
             console.log("Fetched Challenges:", JSON.stringify(challenges, null, 4));
-            return res.render('Challenges/edit_challenges', {
+            return res.json({
                 status: 200,
                 data: challenges,
                 message: "Challenges fetched successfully."

@@ -19,7 +19,7 @@ exports.blogs_list = function (req, res) {
         }).then(blogs => {
             // console.log("All blogs:", JSON.stringify(blogs, null, 4));
             // res.json(blogs);
-            return res.render('Blogs/blogs_list', {
+            return res.json({
                 status: 200,
                 data: blogs,
                 message: "blogs fetched successfully."
@@ -46,7 +46,7 @@ exports.add_blogs =  function (req, res) {
         Blogs_category.findAll({ }).then(blogs_category => {
         console.log("All blogs_category:", JSON.stringify(blogs_category, null, 4));
         
-         return res.render('Blogs/add_blogs', {
+         return res.json({
             status: 200,
             data: blogs_category,
             data2: user,
@@ -156,7 +156,7 @@ exports.edit_blogs = function (req, res) {
                     console.log("User Fetched:", JSON.stringify(user_result, null, 4));
                     Blogs_category.findAll({}).then(blogs_category => {
                         console.log("All blogs category:", JSON.stringify(blogs_category, null, 4));
-                        return res.render('Blogs/edit_blogs', {
+                        return res.json({
                             status: 200,
                             data: blogs_result,
                             data2: users,
@@ -275,7 +275,7 @@ exports.blogs_category =  function (req, res) {
     try{
         Blogs_category.findAll({ }).then(blogs_category => {
         console.log("All blogs_category:", JSON.stringify(blogs_category, null, 4));
-        return res.render('Blogs/blogs_category', {
+        return res.json({
             status: 200,
             data: blogs_category,
             message: "blogs_category fetched successfully."
@@ -359,7 +359,7 @@ exports.edit_blogs_category =  function (req, res) {
     try{
         Blogs_category.findAll({ where:{blogs_category_id : req.params.blogs_category_id}}).then(blogs_category => {
             console.log("All blogs_category:", JSON.stringify(blogs_category, null, 4));
-            return res.render('Blogs/edit_blogs_category', {
+            return res.json({
                 status: 200,
                 data: blogs_category,
                 message: "blogs_category fetched successfully."
