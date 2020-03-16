@@ -7,7 +7,7 @@ exports.company_list = function (req, res) {
     try{
         Company.findAll({ }).then(company => {
             console.log("All company:", JSON.stringify(company, null, 4));
-            return res.render('Company/company', {
+            return res.json({
                 status: 200,
                 data: company,
                 message: "company fetched successfully."
@@ -91,7 +91,7 @@ exports.edit_company = function(req, res) {
     try{
         Company.findAll({ where: {company_id: req.params.company_id } }).then(company => {
             console.log("company with company id: ",req.params.company_id, " is", JSON.stringify(company, null, 4));
-            return res.render('Company/edit_company', {
+            return res.json({
                 status: 200,
                 data: company,
                 message: "company fetched successfully."
