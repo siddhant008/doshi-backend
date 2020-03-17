@@ -35,6 +35,15 @@ app.use(express.static('uploads'));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+    if(req.headers.origin != undefined)
+        res.setHeader('Access-Control-Allow-origin', req.headers.origin);
+    else
+        res.setHeader('Access-Control-Allow-origin', '*'); 
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+})
+
 // app.use(session({secret: 'secret', resave: false, saveUninitialized: true}));
 //DB connection
 let sequelizeInstance = require('./config/connection');
