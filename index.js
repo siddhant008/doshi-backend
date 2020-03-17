@@ -23,14 +23,14 @@ const Company = require('./models/company');
 const Blogs_category_intermediate = require('./models/blogs_category_intermediate');
 const Page = require('./models/page');
 
-
+console.log(__dirname );
 // Access public folder from root
 app.use('/public', express.static('public'));
 app.use('/public', express.static('views'));
 app.get('/layouts/', function(req, res) {
   res.render('view');
 });
-app.use(express.static('uploads'));
+app.use(express.static('D:/ANGULAR/AdminPanel/uploads'));
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
