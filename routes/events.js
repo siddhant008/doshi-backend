@@ -4,6 +4,7 @@ const router = express.Router();
 const controller_event = require('../controller/controller_event');
 
 
+router.get('/event-detail', controller_event.event_detail);
 // event category
 router.get('/event-category', controller_event.event_category);
 router.get('/add-event-category', controller_event.add_event_category);

@@ -41,6 +41,47 @@ exports.event_list = function (req, res) {
     }
 };
 
+// event detail get
+
+exports.event_detail = (req, res) => {
+    try{
+        Event.findOne({
+            where: [{
+                event_id: req.query.event_id
+            }],  
+            include: [
+                {
+                  model: City
+                },
+                {
+                  model:Event_category
+                }
+            ]
+        }).then(event => {
+            console.log("Event: ", JSON.stringify(event, null, 4));
+            return res.json({
+                status: 200,
+                data: event,
+                message: "Event fetched successfully."
+            })
+        }).catch(err => {
+            console.error('Unable to connect to the database:', err);
+            return res.json({
+                status: 500,
+                data: err,
+                message: "Event fetching failed."
+            })
+        });
+    } catch (exception){
+        console.log("An exception occured, please contact the administrator.", exception);
+        return res.json({
+            status: 500,
+            data: exception,
+            message: "Event fetching failed."
+        })
+    }
+};
+
 //add - event get
 exports.add_event = function (req, res) {
     res.locals = {  title: 'Add Event' };
