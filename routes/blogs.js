@@ -15,6 +15,7 @@ const upload = multer({storage: storage});
 
 const controller_blogs = require('../controller/controller_blogs');
 
+router.get('/blog-detail', controller_blogs.blog_detail)
 router.get('/blogs-list', controller_blogs.blogs_list);
 router.get('/blogs-category', controller_blogs.blogs_category);
 router.get('/add-blogs', controller_blogs.add_blogs);
