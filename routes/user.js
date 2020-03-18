@@ -4,8 +4,8 @@ const router = express.Router();
 const controller_user = require('../controller/controller_user');
 
 //user-list
+router.get('/user', controller_user.user_fetch);
 router.get('/user-list', controller_user.user_list);
-
 //user-roles
 router.get('/user-roles', controller_user.user_roles);
 
