@@ -2,14 +2,19 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/connection');
 
 
-module.exports = sequelize.define("Blogs_category", {
-    blogs_category_id: {
+module.exports = sequelize.define("Job_Seeker", {
+    job_seeker_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
-    blogs_category_name: {
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+    },
+    password: {
         type: Sequelize.STRING,
         allowNull: false
     }

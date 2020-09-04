@@ -2,26 +2,19 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/connection');
 
 
-module.exports = sequelize.define("Challenge", {
-    challenge_id: {
+module.exports = sequelize.define("Recruiter", {
+    recruiter_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
-    challenge_title: {
+    email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
-    challenge_price: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    challenge_description: {
-    type: Sequelize.STRING,
-        allowNull: false
-    },
-    challenge_note: {
+    password: {
         type: Sequelize.STRING,
         allowNull: false
     }
