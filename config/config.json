@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "roadrunners",
+    "database": "squareboat",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
