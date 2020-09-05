@@ -1,8 +1,13 @@
-var app = require('express')();
-var express = require('express');
-var http = require('http').Server(app);
-var bodyParser = require('body-parser');
-var router = require('./routes/router.js');
+const app = require('express')();
+const express = require('express');
+const http = require('http').Server(app);
+const bodyParser = require('body-parser');
+const router = require('./routes/router.js');
+
+const Job_applicant_intermediate = require('./models/job_applicant_intermediate');
+const Jobs = require('./models/jobs');
+const Job_Seeker = require('./models/job_seeker');
+
 
 // console.log(__dirname );
 // Access public folder from root
@@ -28,47 +33,10 @@ app.use((req, res, next) => {
 let sequelizeInstance = require('./config/connection');
 
 //Associations
-//state
-// Country.hasMany(State, { foreignKey: "country_id"});
-// State.belongsTo(Country, { foreignKey: "country_id"});
-// //city
-// State.hasMany(City, {foreignKey: "state_id"});
-// City.belongsTo(State, {foreignKey: "state_id"});
-// //event
-// Event.belongsTo(City, { foreignKey: "city_id" });
-// City.hasMany(Event, { foreignKey: "city_id" });
-// Event.belongsTo(Event_category, { foreignKey: "event_category_id"});
-// Event_category.hasMany(Event, { foreignKey: "event_category_id", onDelete: 'CASCADE', hooks: true });
-// //blogs
-// Blogs_category_intermediate.belongsTo(Blogs, {foreignKey: "blogs_id", onDelete: 'cascade',onUpdate: 'cascade'});
-// Blogs_category_intermediate.belongsTo(Blogs_category, {foreignKey: "blogs_category_id", onDelete: 'cascade', onUpdate: 'cascade'});
-// Blogs.belongsToMany(Blogs_category, {through: Blogs_category_intermediate , foreignKey: "blogs_id", onDelete: 'cascade', onUpdate: 'cascade'});
-// Blogs_category.belongsToMany(Blogs, {through: Blogs_category_intermediate, foreignKey: "blogs_category_id"});
-// User.hasMany(Blogs, {foreignKey: "user_id"});
-// Blogs.belongsTo(User, {foreignKey: "user_id"});
-// //User
-// User.belongsTo(Fitness_group, { foreignKey: "fitness_group_id"});
-// Fitness_group.hasMany(User, {foreignKey: "fitness_group_id"});
-// User.belongsTo(Company, { foreignKey: "company_id"});
-// Company.hasMany(User, {foreignKey: "company_id"});
-// User.belongsTo(City, { foreignKey: "city_id"});
-// City.hasMany(User, {foreignKey: "city_id"});
-// User.belongsTo(User_role, { foreignKey: "user_role_id"});
-// User_role.hasMany(User, {foreignKey: "user_role_id"});
-// //page
-// Page.belongsTo(User, {foreignKey: "user_id"});
-// User.hasMany(Page, {foreignKey: "user_id"});
-
-// sequelizeInstance.sync({force:false});
-
-// Add Authentication Route file with app
-// app.use('/', Authrouter); 
-
-//For set layouts of html view
-// var expressLayouts = require('express-ejs-layouts');
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
-// app.use(expressLayouts);
+Job_applicant_intermediate.belongsTo(Job_Seeker, {foreignKey: "job_seeker_id", onDelete: 'cascade', onUpdate: 'cascade'});
+Job_applicant_intermediate.belongsTo(Jobs, {foreignKey: "jobs_id", onDelete: 'cascade',onUpdate: 'cascade'});
+Jobs.belongsToMany(Job_Seeker, {through: Job_applicant_intermediate , foreignKey: "jobs_id"});
+Job_Seeker.belongsToMany(Jobs, {through: Job_applicant_intermediate, foreignKey: "job_Seeker_id"});
 
 // Add Route file with app
 app.use('/', router); 
