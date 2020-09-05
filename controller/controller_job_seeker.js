@@ -27,7 +27,7 @@ exports.login_job_seeker = (req, res) => {
 };
 
 exports.signup_job_seeker = (req, res) => {
-  Blogs.create({
+    Job_Seeker.create({
         email: req.body.email,
         password: req.body.password,
     })
